@@ -61,6 +61,10 @@ $("#issueCollectorForm").submit(function(event){
         else if ($(this).hasClass("evolution")){
         	labels.push("Evolution");
         }
+        
+        if ($(this).hasClass("GAS")){
+        	project = 'GAS';
+        }
     });
     
 	jQuery.ajax({
