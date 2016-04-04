@@ -1,2 +1,2 @@
 # jiraissuecollector
-Jira REST Issue collector
+Jira REST Issue collector Chrome Extension
