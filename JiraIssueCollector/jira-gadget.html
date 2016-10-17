@@ -1,0 +1,136 @@
+<html>
+    <head>
+        <!-- External dependencies -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/sinon.js/1.15.4/sinon.js"></script>
+        <script src="http://aui-cdn.atlassian.com/aui-adg/5.9.17/js/aui.js"></script>
+        <script src="http://aui-cdn.atlassian.com/aui-adg/5.9.17/js/aui-experimental.js"></script>
+        <script src="http://aui-cdn.atlassian.com/aui-adg/5.9.17/js/aui-datepicker.js"></script>
+        <link rel="stylesheet" type="text/css" href="http://aui-cdn.atlassian.com/aui-adg/5.9.17/css/aui.css"/>
+        <link rel="stylesheet" type="text/css" href="http://aui-cdn.atlassian.com/aui-adg/5.9.17/css/aui-experimental.css"/>
+        <!-- / External dependencies -->
+        <style>
+          body{background-color: #ffffff;
+          margin: 10px;
+          }
+        </style>
+        
+    </head>
+    <body>
+        <h1>Issue Collector</h1>
+      <div class="aui-tabs horizontal-tabs">
+            <ul class="tabs-menu">
+                <li class="menu-item active-tab">
+                    <a href="#tabs-example-first">Operations</a>
+                </li>
+                <li class="menu-item">
+                    <a href="#tabs-example-second">Acquisition</a>
+                </li>
+              <li class="menu-item">
+                    <a href="#tabs-example-third">SugarCRM</a>
+                </li>
+            </ul>
+            <div class="tabs-pane active-pane" id="tabs-example-first">
+               <br/><div class="aui-group"> 
+              <button class="aui-item aui-button aui-lozenge-complete">Billing logic</button>  
+              <button class="aui-item aui-button aui-lozenge-complete">Dormant logic</button>  
+              <button class="aui-item aui-button aui-lozenge-complete">Messaging configuration</button>
+              <button class="aui-item aui-button aui-lozenge-complete">New/Change logic</button>  
+              <button class="aui-item aui-button aui-lozenge-complete">Redemption sites</button>
+              </div>
+              <div class="aui-group"> 
+              <button class="aui-item aui-button aui-lozenge-error">Cube Discrepancies</button>  
+              <button class="aui-item aui-button aui-lozenge-error">Log investigation</button>  
+              <button class="aui-item aui-button aui-lozenge-error">Other support</button>
+              <button class="aui-item aui-button aui-lozenge-error">Renew Issue</button>
+              <button class="aui-item aui-button aui-lozenge-error">Revenue Assurance</button>
+              <button class="aui-item aui-button aui-lozenge-error">User data extraction</button>
+              </div>
+            </div>
+            <div class="tabs-pane" id="tabs-example-second">
+                <br/><div class="aui-group"> 
+              <button class="aui-item aui-button aui-lozenge-complete">Change on LP Master Template</button>  
+              <button class="aui-item aui-button aui-lozenge-complete">Configuration change</button>  
+              <button class="aui-item aui-button aui-lozenge-complete">New/Change logic</button>
+              </div>
+              <div class="aui-group"> 
+              <button class="aui-item aui-button aui-lozenge-error">Affiliate Pixel</button>  
+              <button class="aui-item aui-button aui-lozenge-error">Alterative Domain</button>  
+              <button class="aui-item aui-button aui-lozenge-error">Error on live traffic</button>  
+              <button class="aui-item aui-button aui-lozenge-error">Log investigation</button>  
+              <button class="aui-item aui-button aui-lozenge-error">LP Design Issue</button>
+              <button class="aui-item aui-button aui-lozenge-error">Performance Investigation</button>
+              <button class="aui-item aui-button aui-lozenge-error">Stats Discrepancy</button>
+                 </div>
+            </div>
+          <div class="tabs-pane" id="tabs-example-third">
+                <br/><div class="aui-group"> 
+              <button class="aui-item aui-button aui-lozenge-error">General request</button>
+            </div>
+        </div>
+    
+        <form class="aui top-label">
+          
+        <select class="full-width-field" id="select2-example" multiple="" placeholder="Country/s">
+            <option value="UK">United Kingdom</option>
+            <option value="DE">Germany</option>
+            <option value="CH">Switzerland</option>
+            <option value="UAE">Emirates</option>
+            <option value="AT">Austria</option>
+            <option value="RU">Russia</option>
+            <option value="ZA">South Africa</option>
+            <option value="SG">Singapore</option>
+          <option value="AU">Australia</option>
+          <option value="MY">Malaysia</option>
+          <option value="IN">India</option>
+          <option value="VN">Vietnam</option>
+          <option value="IT">Italy</option>
+          <option value="TR">Turkey</option>
+          <option value="GR">Greece</option>
+          <option value="ES">Spain</option>
+          <option value="PT">Portugal</option>
+          <option value="AR">Argentina</option>
+          <option value="BR">Brazil</option>
+          <option value="CL">Chile</option>
+          <option value="MX">Mexico</option>
+        </select>
+
+        <div class="aui-group">
+          <input class="text full-width-field" type="text"
+               id="comment-email" name="comment-email" placeholder="You request subject">        
+        </div>
+    
+        <div class="aui-group">
+        
+        <textarea class="textarea full-width-field" name="comment-input"
+                  id="comment-input" placeholder="Your comment here..."></textarea>
+        </div>
+          <div class="aui-group">
+            <label class="full-width-field ffi" data-ffi-button-text="Attach file">
+                    <input type="file" id="ffi1" name="ffi1" aria-label="Fancy File Input">
+                </label>
+        </div>
+          
+          <div class="aui-group">
+            <div class="aui-item">    
+            <aui-label for="deadline">Deadline?</aui-label>
+                <aui-toggle id="deadline" label="Deadline" tooltip-on="Yes" tooltip-off="No"></aui-toggle>
+            </div>
+            <div class="aui-item">
+            <aui-label for="revenueloss">Revenue loss?</aui-label>
+            <aui-toggle id="revenueloss" label="Revenue loss" tooltip-on="Yes" tooltip-off="No"></aui-toggle>
+            </div>
+          </div>
+          
+          <div class="buttons-container">
+        <div class="buttons">
+            <input class="button submit" type="submit" value="Save" id="comment-save-button">
+            <a class="cancel" href="#">Cancel</a>
+        </div>
+    </div>
+        </form>
+        <script>
+          AJS.$("#select2-example").auiSelect2();
+        </script>
+    </body>
+</html>
