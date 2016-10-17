@@ -5,6 +5,11 @@ $(".form-group > .btn").click(function() {
 	$(this).addClass("active").removeClass("btn-primary").addClass("btn-default").siblings().removeClass("active").removeClass("btn-default").addClass("btn-primary");
 });
 
+$(document).ready(function() {
+  var $issueMeta = $(".js-issueMeta").select2();
+  $issueMeta.select2("open");
+});
+
 //Support
 $(".form-group > .support > .btn").click(function() {
 	if ($(this).hasClass("active")){
@@ -26,52 +31,40 @@ $(".form-group > .evolution > .btn").click(function() {
 });
 
 function bodyOnload() {
-	$("#subject").focus();
+	$("#issueMeta").focus();
 }
 
 /* Logic */
 $("#issueCollectorForm").submit(function(event){
 	var host = 'https://buongiorno.atlassian.net';
 	var issue_browse = host +"/browse/";
-	
-	var issuetype = "Story";
 
+	var issueMeta = $('#issueMeta').val();
+
+
+	switch (issueMeta) {
+		case "LMN_Internal":
+			var project = "PLR";
+			var issuetype = "Story";
+			var labels = ["LMN","LMN_int"];
+			break;
+		case "LMN_Support":
+			var project = "PGE";
+			var issuetype = "Bug";
+			var labels = ["LMN","Support_dev"];
+			break;
+		case "BPC_Support":
+			var project = "PGE";
+			var issuetype = "Bug";
+			var labels = ["BPC","Support"];
+			break;
+
+	}
+	
 	var summary = $('#subject').val();
 	var description = $('#description').val();
-
-	var project = $('#project .active').text();
-
-	var labels = ["LMN"];
+	//var project = $('#project .active').text();
 	
-/*
-    $('#region .active').each(function(){
-        labels.push($(this).attr('id')); 
-    }); 
-
-    $('#country .active').each(function(){
-        labels.push($(this).attr('id'));
-        if(jQuery.inArray($(this).attr('id'), countries_lmn) >= 0){
-        	//country under LMN
-        	labels.push("LMN"); 
-        	project = 'PPE';
-        }
-    });
-    
-    $('#request .active').each(function(){
-        labels.push($(this).attr('id')); 
-        if ($(this).hasClass("support")){
-        	labels.push("Support");
-        	issuetype = 'Bug';
-        }
-        else if ($(this).hasClass("evolution")){
-        	labels.push("Evolution");
-        }
-        
-        if ($(this).hasClass("GAS")){
-        	project = 'GAS';
-        }
-    });
- */   
 	jQuery.ajax({
 		url: host +'/rest/api/2/issue/',
 		type: 'POST',

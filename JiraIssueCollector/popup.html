@@ -14,18 +14,26 @@
 		<h1>LMN Issue creator</h1>
 		<form id="issueCollectorForm" action="#">
 
+			<div class="form-group container-fluid text-left">
+			<select id="issueMeta" class="js-issueMeta">
+  				 <option value="LMN_Internal">LMN Internal</option>
+				 <option value="LMN_Support">LMN Support</option>
+ 				 <option value="BPC_Support">BPC Support</option>
+			</select>
+			</div>
+
 			<!-- Subject //-->
 			<div class="form-group">
 			    <!-- <label for="subject">Subject</label> -->
-			    <input type="text" class="form-control" id="subject" placeholder="Subject">
+			    <input type="text" class="form-control" id="subject" placeholder="Subject" tabindex="1">
 			  </div>
 			  <div class="form-group">
 			    <!-- <label for="description">Description</label> -->
-			    <textarea class="form-control" id="description" rows="10" placeholder="Describe your request"></textarea>
+			    <textarea class="form-control" id="description" rows="10" placeholder="Describe your request" tabindex="2"></textarea>
 			  </div>
 			</div>
 			<div class="container-fluid text-left">
-				<button type="submit" class="btn btn-default">Submit</button>
+				<button type="submit" class="btn btn-default" tabindex="3">Submit</button>
 			</div>
                         <div class="container-fluid text-center">
                             <!-- Region //-->
@@ -41,13 +49,17 @@
 	</div>
 	
 	<script src="lib/jquery-1.10.0.min.js"></script>
+	<script src="lib/select2.full.min.js"></script>
 	<script src="popup.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
+
     <!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+	<link rel="stylesheet" href="css/select2.min.css">
   </body>
 </html>
 
