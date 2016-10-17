@@ -25,24 +25,29 @@ $(".form-group > .evolution > .btn").click(function() {
 	}
 });
 
+function bodyOnload() {
+	$("#subject").focus();
+}
+
 /* Logic */
 $("#issueCollectorForm").submit(function(event){
-	var host = 'https://YOURCOMPANY.atlassian.net';
+	var host = 'https://buongiorno.atlassian.net';
 	var issue_browse = host +"/browse/";
-	var countries_lmn = ['CH', 'AT', 'UAE']
 	
-	
-	//defaut project
-	project = "SOP";
-	issuetype = "Story";
+	var issuetype = "Story";
 
-	summary = $('#subject').val();
-	description = $('#description').val();
+	var summary = $('#subject').val();
+	var description = $('#description').val();
+
+	var project = $('#project .active').text();
+
+	var labels = ["LMN"];
 	
-	var labels = [];
+/*
     $('#region .active').each(function(){
         labels.push($(this).attr('id')); 
     }); 
+
     $('#country .active').each(function(){
         labels.push($(this).attr('id'));
         if(jQuery.inArray($(this).attr('id'), countries_lmn) >= 0){
@@ -66,7 +71,7 @@ $("#issueCollectorForm").submit(function(event){
         	project = 'GAS';
         }
     });
-    
+ */   
 	jQuery.ajax({
 		url: host +'/rest/api/2/issue/',
 		type: 'POST',
@@ -88,11 +93,13 @@ $("#issueCollectorForm").submit(function(event){
 		error: function(response){
 			console.log('error, args:'+ response);
 			$('#submitresult').append(JSON.stringify(response));
+			setTimeout(function () { window.close(); }, 4000);
 		},
 		success: function (response){
 			console.log("Request created: "+ JSON.stringify(response));
 			$('#submitresult').append('<p><a href="'+ issue_browse + response.key +'">'+ issue_browse + response.key +'</a></p>');
 			$('#submitresult').append('<p>'+ JSON.stringify(response) +'</p>');
+			setTimeout(function () { window.close(); }, 4000);
 		}
 	});
 

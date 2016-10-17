@@ -9,29 +9,10 @@
 
     
   </head>
-  <body>
+  <body onload="bodyOnload();" style="min-width:600px;">
     <div class="container-fluid text-center">
-		<h1>Issue collector</h1>
+		<h1>LMN Issue creator</h1>
 		<form id="issueCollectorForm" action="#">
-
-			<div class="container-fluid">
-				<div class="form-group" role="group" id="request">
-				<!-- Macro-Category level 1: Support //-->
-				<div class="support"  aria-label="Support">
-				  <button type="button" class="btn btn-danger btn-lg support" id="DropRevenues">Drop on revenues</button>
-				  <button type="button" class="btn btn-danger btn-lg support" id="CCLogs">CC Log extraction</button>
-				  <button type="button" class="btn btn-danger btn-lg support" id="SanityQA">Sanity QA</button>
-				</div>
-
-				<!-- Macro-Category level 1: Evolution //-->
-				<div class="evolution" aria-label="Evolution">
-				  <button type="button" class="btn btn-success btn-lg evolution GAS" id="NewPixel">New pixel</button>
-				  <button type="button" class="btn btn-success btn-lg evolution" id="NewPrice">New price point</button>
-				  <button type="button" class="btn btn-success btn-lg evolution" id="CaringMessages">Caring Messages</button>
-				  <button type="button" class="btn btn-success btn-lg evolution" id="Others">Others</button>
-				</div>
-				</div>
-			</div>
 
 			<!-- Subject //-->
 			<div class="form-group">
@@ -42,37 +23,18 @@
 			    <!-- <label for="description">Description</label> -->
 			    <textarea class="form-control" id="description" rows="10" placeholder="Describe your request"></textarea>
 			  </div>
-			  <div class="form-group">
-			    <!-- <label for="file">File input</label> -->
-			    <input type="file" id="file">
-			    <!-- <p class="help-block">Provide as much as information as possible</p> -->
-			  </div>
 			</div>
-			<div class="container-fluid text-center">
-			    <!-- Region //-->
-				<div class="form-group" role="group" aria-label="Region" id="region">
-				  <button type="button" class="btn btn-primary btn-lg" id="NEMEA">NEMEA</button>
-				  <button type="button" class="btn btn-primary btn-lg" id="APAC">APAC</button>
-				  <button type="button" class="btn btn-primary btn-lg" id="ITMED">ITMED</button>
-				  <button type="button" class="btn btn-primary btn-lg" id="LATAM">LATAM</button>
-				  <button type="button" class="btn btn-primary btn-lg" id="IBERIA">IBERIA</button>
-				  <button type="button" class="btn btn-primary btn-lg" id="FRINT">FRINT</button>
-				</div>
-				
-				<!-- Country based on the region selected //-->
-				<div class="form-group" role="group" aria-label="Country" id="country">
-				  <button type="button" class="btn btn-primary btn-lg" id="UK">UK</button>
-				  <button type="button" class="btn btn-primary btn-lg" id="DE">DE</button>
-				  <button type="button" class="btn btn-primary btn-lg" id="CH">CH</button>
-				  <button type="button" class="btn btn-primary btn-lg" id="AT">AT</button>
-				  <button type="button" class="btn btn-primary btn-lg" id="RU">RU</button>
-				  <button type="button" class="btn btn-primary btn-lg" id="ZA">ZA</button>
-				  <button type="button" class="btn btn-primary btn-lg" id="UAE">UAE</button>
-				</div>
-			</div>
-			<div class="container-fluid text-right">
+			<div class="container-fluid text-left">
 				<button type="submit" class="btn btn-default">Submit</button>
 			</div>
+                        <div class="container-fluid text-center">
+                            <!-- Region //-->
+                                <div class="form-group" role="group" aria-label="Project" id="project">
+                                  <button type="button" class="btn btn-primary btn-lg active btn-default" id="project:PLR">PLR</button>
+                                  <button type="button" class="btn btn-primary btn-lg" id="project:PGE">PGE</button>
+                                  <button type="button" class="btn btn-primary btn-lg" id="project:PPE">PPE</button>
+                                </div>
+                        </div> 
 		</form>
 		<div class="container-fluid text-center" id="submitresult"></div>
 		<br />
