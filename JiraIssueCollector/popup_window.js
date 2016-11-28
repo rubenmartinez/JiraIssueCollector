@@ -42,6 +42,7 @@ $("#issueCollectorForm").submit(function(event){
 	var issueMeta = $('#issueMeta').val();
 
 
+        /* https://developer.atlassian.com/jiradev/jira-apis/jira-rest-apis/jira-rest-api-tutorials/jira-rest-api-example-create-issue  */
 	switch (issueMeta) {
 		case "LMN_Internal":
 			var project = "PLR";
