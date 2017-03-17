@@ -44,20 +44,32 @@ $("#issueCollectorForm").submit(function(event){
 
         /* https://developer.atlassian.com/jiradev/jira-apis/jira-rest-apis/jira-rest-api-tutorials/jira-rest-api-example-create-issue  */
 	switch (issueMeta) {
+		case "SRM_Internal":
+			var project = "PPE";
+			var issuetype = "Task";
+			var labels = ["SRM", "LMN_int", "SRM_Internal"];
+			var assignee = "ruben.martinez";
+			break;
 		case "LMN_Internal":
 			var project = "PLR";
 			var issuetype = "Story";
 			var components = ["LMN"];
 			var labels = ["LMN","LMN_int"];
 			break;
-		case "LMN_Support":
+		case "LMN_Support_Task":
+			var project = "PGE";
+			var issuetype = "Task";
+			var components = ["LMN"];
+			var labels = ["LMN","Support_dev,SRM_Support"];
+			break;
+		case "LMN_Support_Bug":
 			var project = "PGE";
 			var issuetype = "Bug";
 			var components = ["LMN"];
-			var labels = ["LMN","Support_dev"];
+			var labels = ["LMN","Support_dev,SRM_Support"];
 			break;
 		case "LMN_WebInterface":
-			var project = "PLR";
+			var project = "PPE";
 			var issuetype = "Story";
 			var components = ["LMN","LMN UI"];
 			var labels = ["LMN","interface"];
