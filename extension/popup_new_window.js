@@ -1,20 +1,12 @@
-
 $(document).ready(function() {
-  var issueSelector = $("#issueSelector").select2({
+  $(".select2").select2({
     theme: "bootstrap",
-    width: 200,
-    //dropdownAutoWidth : true,
-    placeholder: "Select an issueType"
+    width: 200
   });
+
+  var issueSelector = $("#issueSelector");
   issueSelector.select2("open");
   issueSelector.focus();
-
-  var projectSelector = $("#projectSelector").select2({
-    theme: "bootstrap",
-    width: 200,
-	//dropdownAutoWidth : true,
-    placeholder: "Select a project"
-  });
 });
 
 /*
