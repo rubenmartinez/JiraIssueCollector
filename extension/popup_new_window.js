@@ -1,49 +1,41 @@
+
+$(document).ready(function() {
+  var issueSelector = $("#issueSelector").select2({
+    theme: "bootstrap",
+    width: 200,
+    //dropdownAutoWidth : true,
+    placeholder: "Select an issueType"
+  });
+  issueSelector.select2("open");
+  issueSelector.focus();
+
+  var projectSelector = $("#projectSelector").select2({
+    theme: "bootstrap",
+    width: 200,
+	//dropdownAutoWidth : true,
+    placeholder: "Select a project"
+  });
+});
+
 /*
- * Look & Feel
+ * Look & Feel button groups
  */
+/*
 $(".form-group > .btn").click(function() {
 	$(this).addClass("active").removeClass("btn-primary").addClass("btn-default").siblings().removeClass("active").removeClass("btn-default").addClass("btn-primary");
 });
+*/
 
-$(document).ready(function() {
-  var $issueMeta = $(".js-issueMeta").select2();
-  $issueMeta.select2("open");
-});
-
-//Support
-$(".form-group > .support > .btn").click(function() {
-	if ($(this).hasClass("active")){
-		$(this).removeClass("active").removeClass("btn-default").addClass("btn-danger");
-	}
-	else{
-		$(this).addClass("active").removeClass("btn-danger").addClass("btn-default").siblings().removeClass("active").removeClass("btn-default").addClass("btn-danger");
-	}
-});
-
-//Evolution
-$(".form-group > .evolution > .btn").click(function() {
-	if ($(this).hasClass("active")){
-		$(this).removeClass("active").removeClass("btn-default").addClass("btn-success");
-	}
-	else {
-		$(this).addClass("active").removeClass("btn-success").addClass("btn-default").siblings().removeClass("active").removeClass("btn-default").addClass("btn-success");
-	}
-});
-
-function bodyOnload() {
-	$("#issueMeta").focus();
-}
 
 /* Logic */
 $("#issueCollectorForm").submit(function(event){
 	var host = 'https://buongiorno.atlassian.net';
 	var issue_browse = host +"/browse/";
 
-	var issueMeta = $('#issueMeta').val();
-
+	var issueSelector = $('#issueSelector').val();
 
         /* https://developer.atlassian.com/jiradev/jira-apis/jira-rest-apis/jira-rest-api-tutorials/jira-rest-api-example-create-issue  */
-	switch (issueMeta) {
+	switch (issueSelector) {
 		case "SRM_Internal":
 			var project = "PPE";
 			var issuetype = "Task";

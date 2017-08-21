@@ -6,48 +6,73 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Issue collector</title>
-
-    
   </head>
-  <body onload="bodyOnload();" style="min-width:600px;">
+
+  <body style="min-width:600px;">
     <div class="container-fluid text-center">
 		<h1>LMN Issue creator</h1>
+	</div>
+
+    <div class="container-fluid text-left">
 		<form id="issueCollectorForm" action="#">
 
-			<div class="form-group container-fluid text-left">
-			<select id="issueMeta" class="js-issueMeta">
-  				 <option value="Internal">Internal</option>
-  				 <option value="LMN_Internal">LMN Internal</option>
-  				 <option value="SRM_Internal">SRM Internal</option>
-				 <option value="LMN_Support_Task">LMN Support (task)</option>
-				 <option value="LMN_Support_Bug">LMN Support (bug)</option>
-				 <option value="LMN_WebInterface">LMN Web Interface</option>
- 				 <option value="BPC_Support">BPC Support</option>
- 				 <option value="SOP_SanityQA">SOP Sanity Test QA</option>
-			</select>
+			<div class="form-group">
+				<select id="issueSelector" tabindex="1">
+	  				 <option value="Internal">Internal</option>
+	  				 <option value="LMN_Internal">LMN Internal</option>
+	  				 <option value="SRM_Internal">SRM Internal</option>
+					 <option value="LMN_Support_Task">LMN Support (task)</option>
+					 <option value="LMN_Support_Bug">LMN Support (bug)</option>
+					 <option value="LMN_WebInterface">LMN Web Interface</option>
+	 				 <option value="BPC_Support">BPC Support</option>
+	 				 <option value="SOP_SanityQA">SOP Sanity Test QA</option>
+				</select>
 			</div>
-
 
 			<!-- Subject //-->
 			<div class="form-group">
 			    <!-- <label for="subject">Subject</label> -->
-			    <input type="text" class="form-control" id="subject" placeholder="Subject" tabindex="1">
+			    <input type="text" class="form-control" id="subject" placeholder="Subject" tabindex="2">
 			</div>
 
 			<!-- Description -->
 		  	<div class="form-group">
 			    <!-- <label for="description">Description</label> -->
-			    <textarea class="form-control" id="description" rows="10" placeholder="Describe your request" tabindex="2"></textarea>
-			  </div>
+			    <textarea class="form-control" id="description" rows="10" placeholder="Describe your request" tabindex="3"></textarea>
 			</div>
 
-			<!-- Project -->
+  			<!-- Project -->
 			<div class="form-group">
-			    <!-- <label for="subject">Subject</label> -->
-			    <input type="text" class="form-control" id="subject" placeholder="Subject" tabindex="1">
+				<div class="container-fluid text-left">
+	            	<button type="submit" class="btn btn-default" tabindex="4">Submit</button>
+	            </div>
+        	</div>
+
+  			<!-- Project -->
+			<div class="form-group">
+				<label for="projectSelector">Project: 
+				<select id="projectSelector" tabindex="5">
+      				<option value="PPE">PPE</option>
+      				<option value="PGE">PGE</option>
+      				<option value="PLR">PLR</option>
+      				<option value="CAS">CAS</option>
+      				<option value="GR">GR</option>
+      				<option value="SOP">SOP</option>
+      				<option value="BRID">BRID</option>
+      				<option value="GAS">GAS</option>
+      				<option value="SUG">SUG</option>
+      				<option value="GFS">GFS</option>
+      				<option value="COREP">COREP</option>
+      				<option value="DDI">DDI</option>
+      			</select>
+				</label>
 			</div>
 
-			<div class="container-fluid text-center" id="submitresult"></div>
+			<div class="form-group">
+			    <label for="labels">Labels
+			    	<input id="labels" type="text" class="form-control" placeholder="Labels (comma-separated)">
+			    </label>
+			</div>
 
 			<!-- Project buttons -->
 			<!-- 
@@ -63,22 +88,26 @@
                         </div> 
             --> 
 		</form>
-		<br />
 	</div>
 
-	<script src="popup_new_window.js"></script>
-	
-	<script src="lib/jquery-1.10.0.min.js"></script>
-	<script src="lib/select2.full.min.js"></script>
+
+	<script src="lib/jquery-1.12.0.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 
-    <!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+	<script src="lib/select2.full.min.js"></script>
 	<link rel="stylesheet" href="css/select2.min.css">
+	<link rel="stylesheet" href="css/select2-bootstrap-theme.css">
+
+	<script src="popup_new_window.js"></script>
   </body>
 </html>
 
