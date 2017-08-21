@@ -15,7 +15,7 @@
         "scripts": [
         	"lib/html5shiv.min.js",
         	"lib/respond.min.js",
-        	"lib/jquery-1.12.0.min.js", "popup.js", "popup_window.js"
+        	"lib/jquery-1.12.0.min.js", "popup.js", "popup_new_window.js"
        	]
     },
     "content_scripts": 
