@@ -1,13 +1,76 @@
+var issueSelector;
+
 $(document).ready(function() {
   $(".select2").select2({
     theme: "bootstrap",
     width: 200
   });
 
-  var issueSelector = $("#issueSelector");
+  issueSelector = $("#issueSelector");
   issueSelector.select2("open");
   issueSelector.focus();
+
+  issueSelector.on("select2:select", issueSelected);
 });
+
+function issueSelected(e) {
+	console.log("issueSelected: "+issueSelector.val());
+	switch (issueSelector.val()) {
+		case "SA_Support":
+			$('#projectSelector').val("PGE").trigger("change");
+			$('#issueTypeSelector').val("Task").trigger("change");
+			$('#labels').val('SA,Support');
+			break;
+		case "SRM_Support_Task":
+			$('#projectSelector').val("PGE").trigger("change");
+			$('#issueTypeSelector').val("Task").trigger("change");
+			$('#labels').val('Support,SRM_Support');
+			$('#components').val("LMN");
+			break;
+		case "SRM_Support_Bug":
+			$('#projectSelector').val("PGE").trigger("change");
+			$('#issueTypeSelector').val("Bug").trigger("change");
+			$('#labels').val('Support,SRM_Support');
+			$('#components').val("LMN");
+			break;
+		case "BPC_Support_Task":
+			$('#projectSelector').val("PGE").trigger("change");
+			$('#issueTypeSelector').val("Task").trigger("change");
+			$('#labels').val('Support,BPC_Support');
+			$('#components').val("");
+			break;
+		case "BPC_Support_Bug":
+			$('#projectSelector').val("PGE").trigger("change");
+			$('#issueTypeSelector').val("Bug").trigger("change");
+			$('#labels').val('Support,BPC_Support');
+			$('#components').val("");
+			break;
+		case "Internal":
+			$('#projectSelector').val("PPE").trigger("change");
+			$('#issueTypeSelector').val("Task").trigger("change");
+			$('#assignee').val("ruben.martinez");
+			$('#labels').val('');
+			break;
+		case "SRM_Internal":
+			$('#projectSelector').val("PPE").trigger("change");
+			$('#issueTypeSelector').val("Task").trigger("change");
+			$('#labels').val('SRM,SRM_Internal');
+			$('#components').val("LMN");
+			break;
+		case "BPC_Internal":
+			$('#projectSelector').val("PPE").trigger("change");
+			$('#issueTypeSelector').val("Task").trigger("change");
+			$('#labels').val('BPC,BPC_Internal');
+			$('#components').val("");
+			break;
+		case "LMN_WebInterface":
+			$('#projectSelector').val("PPE").trigger("change");
+			$('#issueTypeSelector').val("Task").trigger("change");
+			$('#labels').val("LMN,interface,psu_optimization");
+			$('#components').val("LMN UI");
+			break;
+	}
+}
 
 /*
  * Look & Feel button groups
@@ -24,53 +87,13 @@ $("#issueCollectorForm").submit(function(event){
 	var host = 'https://buongiorno.atlassian.net';
 	var issue_browse = host +"/browse/";
 
-	var issueSelector = $('#issueSelector').val();
+	var project = $('#projectSelector').val();
+	var issuetype = $('#issueTypeSelector').val();
+	var labels = $('#labels').val().split(/ *, */);
+	var component = $('#components').val().split(/ *, */);
+	var assignee = $('#assignee').val();
 
         /* https://developer.atlassian.com/jiradev/jira-apis/jira-rest-apis/jira-rest-api-tutorials/jira-rest-api-example-create-issue  */
-	switch (issueSelector) {
-		case "SRM_Internal":
-			var project = "PPE";
-			var issuetype = "Task";
-			var labels = ["SRM", "LMN_int", "SRM_Internal"];
-			var assignee = "ruben.martinez";
-			break;
-		case "LMN_Internal":
-			var project = "PLR";
-			var issuetype = "Story";
-			var components = ["LMN"];
-			var labels = ["LMN","LMN_int"];
-			break;
-		case "LMN_Support_Task":
-			var project = "PGE";
-			var issuetype = "Task";
-			var components = ["LMN"];
-			var labels = ["LMN","Support_dev,SRM_Support"];
-			break;
-		case "LMN_Support_Bug":
-			var project = "PGE";
-			var issuetype = "Bug";
-			var components = ["LMN"];
-			var labels = ["LMN","Support_dev,SRM_Support"];
-			break;
-		case "LMN_WebInterface":
-			var project = "PPE";
-			var issuetype = "Story";
-			var components = ["LMN","LMN UI"];
-			var labels = ["LMN","interface"];
-			break;
-		case "BPC_Support":
-			var project = "PGE";
-			var issuetype = "Bug";
-			var labels = ["BPC","Support"];
-			break;
-		case "SOP_SanityQA":
-			var project = "SOP";
-			var issuetype = "Task";
-			var labels = ["SM","SanityTestsQA"];
-			break;
-
-	}
-	
 	var summary = $('#subject').val();
 	var description = $('#description').val();
 	//var project = $('#project .active').text();
@@ -95,14 +118,14 @@ $("#issueCollectorForm").submit(function(event){
 		}),
 		error: function(response){
 			console.log('error, args:'+ response);
-			$('#submitresult').append(JSON.stringify(response));
-			setTimeout(function () { window.close(); }, 4000);
+			$('#createdResultPlaceholder').css("color", "red").append(JSON.stringify(response));
+			setTimeout(function () { window.close(); }, 10000);
 		},
 		success: function (response){
 			console.log("Request created: "+ JSON.stringify(response));
-			$('#submitresult').append('<p><a href="'+ issue_browse + response.key +'">'+ issue_browse + response.key +'</a></p>');
-			$('#submitresult').append('<p>'+ JSON.stringify(response) +'</p>');
-			setTimeout(function () { window.close(); }, 4000);
+			$('#createdResultPlaceholder').append('<p><a href="'+ issue_browse + response.key +'">'+ issue_browse + response.key +'</a></p>');
+			$('#createdResultPlaceholder').append('<p>'+ JSON.stringify(response) +'</p>');
+			setTimeout(function () { window.close(); }, 10000);
 		}
 	});
 

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -19,12 +20,14 @@
 			<div class="form-group">
 				<select id="issueSelector" class="select2" tabindex="1">
 	  				 <option value="Internal">Internal</option>
-	  				 <option value="LMN_Internal">LMN Internal</option>
 	  				 <option value="SRM_Internal">SRM Internal</option>
-					 <option value="LMN_Support_Task">LMN Support (task)</option>
-					 <option value="LMN_Support_Bug">LMN Support (bug)</option>
+	  				 <option value="BPC_Internal">BPC Internal</option>
 					 <option value="LMN_WebInterface">LMN Web Interface</option>
-	 				 <option value="BPC_Support">BPC Support</option>
+					 <option value="SA_Support">Support SA</option>
+					 <option value="SRM_Support_Task">LMN Support (task)</option>
+					 <option value="SRM_Support_Bug">LMN Support (bug)</option>
+	 				 <option value="BPC_Support_Task">BPC Support (task)</option>
+	 				 <option value="BPC_Support_Bug">BPC Support (bug)</option>
 	 				 <option value="SOP_SanityQA">SOP Sanity Test QA</option>
 				</select>
 			</div>
@@ -41,12 +44,14 @@
 			    <textarea class="form-control" id="description" rows="10" placeholder="Describe your request" tabindex="3"></textarea>
 			</div>
 
-  			<!-- SUBMIT -->
+  			<!-- SUBMIT BUTTON -->
 			<div class="form-group">
 				<div class="container-fluid text-left">
 	            	<button type="submit" class="btn btn-default" tabindex="4">Submit</button>
 	            </div>
         	</div>
+
+        	<div class="container-fluid text-center" id="createdResultPlaceholder"></div>
 
   			<!-- Project -->
 			<div class="form-group">
@@ -88,6 +93,11 @@
 			<div class="form-group">
 			    <label for="components">Components</label>
 			    <input id="components" type="text" class="form-control" placeholder="Components (comma-separated)" tabindex="8">
+			</div>
+
+			<div class="form-group">
+			    <label for="assignee">Assignee</label>
+			    <input id="assignee" type="text" class="form-control" placeholder="Assignee" tabindex="9">
 			</div>
 
 			<!-- Project buttons -->
