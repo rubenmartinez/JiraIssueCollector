@@ -13,22 +13,37 @@
     <div class="container-fluid text-center">
 		<h1>PSU Issue creator</h1>
 	</div>
-
     <div class="container-fluid text-left">
 		<form id="issueCollectorForm" action="#">
 
 			<div class="form-group">
 				<select id="issueSelector" class="select2" tabindex="1">
+	 				 <option value="BadDebts_Task">BadDebts project (task)</option>
+	 				 <option value="BadDebts_Standalone_Task">BadDebts standalone solution (task)</option>
+	 				 <option value="PT-15">Platform PT - Monitoring</option>
+	 				 <option value="PT-55">Platform PT - User Interface</option>
+	 				 <option value="PT-18">Platform PT - SRM Evolution</option>
+	 				 <option value="PT-2">Platform PT - Configuration Automation</option>
+	 				 <option value="PT-16">Platform PT - Knowledge sharing</option>
+	 				 <option value="PT-3">Platform PT - Infrastructure and framework facilities for troubleshooting</option>
+	 				 <option value="PT-63">Platform PT - Microservices</option>
+	 				 <option value="PT-4">Platform PT - DCB Processing Engine</option>
+	 				 <option value="EDCB_Task">Platform EDCB task</option>
+	 				 <option value="EDCB_Support_Task">Platform EDCB Support (task)</option>
+	 				 <option value="EDCB_Support_Bug">Platform EDCB Support (bug)</option>
 	  				 <option value="Internal">Internal</option>
+					 <option value="SA_Support">Support SA (new SL)</option>
 	  				 <option value="SRM_Internal">SRM Internal</option>
 	  				 <option value="BPC_Internal">BPC Internal</option>
 					 <option value="LMN_WebInterface">LMN Web Interface</option>
-					 <option value="SA_Support">Support SA</option>
+					 <option value="PSU_Optimization">PSU Optimization</option>
 					 <option value="SRM_Support_Task">LMN Support (task)</option>
 					 <option value="SRM_Support_Bug">LMN Support (bug)</option>
 	 				 <option value="BPC_Support_Task">BPC Support (task)</option>
 	 				 <option value="BPC_Support_Bug">BPC Support (bug)</option>
-	 				 <option value="SOP_SanityQA">SOP Sanity Test QA</option>
+	 				 <option value="SOP_SanityQA">SOP Sanity Test QA (Issue Collector)</option>
+	 				 <option value="OME">OME (Issue Collector)</option>
+	 				 <option values="Payments_Service_Management">Payments Service Manager (Confluence page description)</option>
 				</select>
 			</div>
 
@@ -70,6 +85,9 @@
 			<div class="form-group">
 				<label for="projectSelector">Project:</label>
 				<select id="projectSelector" class="select2" tabindex="6">
+      				<option value="PT">PT</option>
+      				<option value="EDCB">EDCB</option>
+      				<option value="SL">SL</option>
       				<option value="PPE">PPE</option>
       				<option value="PGE">PGE</option>
       				<option value="PLR">PLR</option>
@@ -96,9 +114,21 @@
 			</div>
 
 			<div class="form-group">
+			    <label for="epicLink">Epic Jira Code</label>
+			    <input id="epicLink" type="text" class="form-control" placeholder="Epic Jira Code (eg. CAS-6317)" tabindex="8">
+			</div>
+
+			<div class="form-group">
 			    <label for="assignee">Assignee</label>
 			    <input id="assignee" type="text" class="form-control" placeholder="Assignee" tabindex="9">
 			</div>
+
+  			<!-- SUBMIT BUTTON -->
+			<div class="form-group">
+				<div class="container-fluid text-left">
+	            	<button type="submit" class="btn btn-default" tabindex="4">Submit</button>
+	            </div>
+        	</div>
 
 			<!-- Project buttons -->
 			<!-- 
@@ -126,8 +156,7 @@
 	<!-- Optional theme -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<!-- Removed as it causes issues with select2; <script src="lib/bootstrap.min.js"></script> -->
 
 	<script src="lib/select2.full.min.js"></script>
 	<link rel="stylesheet" href="css/select2.min.css">
