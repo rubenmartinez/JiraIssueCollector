@@ -1,2 +1,3 @@
 # jiraissuecollector
-Jira REST Issue collector Chrome Extension
+
+Just a small extension to help creating Jira Issues quickly
