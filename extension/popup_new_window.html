@@ -1,11 +1,23 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    
+    <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet"> 
+	<link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+
+	<link href="popup_new_window.css" rel="stylesheet">
+
     <title>PSU Issue collector</title>
   </head>
 
@@ -20,17 +32,25 @@
 				<select id="issueSelector" class="select2" tabindex="1">
 	 				 <option value="BadDebts_Task">BadDebts project (task)</option>
 	 				 <option value="BadDebts_Standalone_Task">BadDebts standalone solution (task)</option>
+	 				 <option value="PT">Platform PT - Generic / no epic</option>
 	 				 <option value="PT-15">Platform PT - Monitoring</option>
 	 				 <option value="PT-55">Platform PT - User Interface</option>
+	 				 <option value="PT-114">Platform PT - Amazon Fuse</option>	 				 
 	 				 <option value="PT-18">Platform PT - SRM Evolution</option>
 	 				 <option value="PT-2">Platform PT - Configuration Automation</option>
 	 				 <option value="PT-16">Platform PT - Knowledge sharing</option>
 	 				 <option value="PT-3">Platform PT - Infrastructure and framework facilities for troubleshooting</option>
 	 				 <option value="PT-63">Platform PT - Microservices</option>
 	 				 <option value="PT-4">Platform PT - DCB Processing Engine</option>
+	 				 <option value="PT_Support_Task">Platform PT Support (task)</option>
+	 				 <option value="PT_Support_Task">Platform PT Support (bug)</option>
+	 				 <option value="OME_Support">OME Support (Product - Jesús Benito)</option>
+	 				 <option value="OME_Support_connectors_enabler">OME Support Connectors Enablers</option>
+	 				 <option value="OME">OME (Issue Collector)</option>
 	 				 <option value="EDCB_Task">Platform EDCB task</option>
 	 				 <option value="EDCB_Support_Task">Platform EDCB Support (task)</option>
 	 				 <option value="EDCB_Support_Bug">Platform EDCB Support (bug)</option>
+	 				 <option value="Shakura_Task">Platform Shakura (task)</option>
 	  				 <option value="Internal">Internal</option>
 					 <option value="SA_Support">Support SA (new SL)</option>
 	  				 <option value="SRM_Internal">SRM Internal</option>
@@ -42,8 +62,8 @@
 	 				 <option value="BPC_Support_Task">BPC Support (task)</option>
 	 				 <option value="BPC_Support_Bug">BPC Support (bug)</option>
 	 				 <option value="SOP_SanityQA">SOP Sanity Test QA (Issue Collector)</option>
-	 				 <option value="OME">OME (Issue Collector)</option>
-	 				 <option values="Payments_Service_Management">Payments Service Manager (Confluence page description)</option>
+	 				 <option value="Payments_Service_Management">Payments Service Manager (Confluence page description)</option>
+	 				 <option value="Supported_Services_Catalog">New Jira - Supported Services Catalog</option>
 				</select>
 			</div>
 
@@ -61,8 +81,8 @@
 
   			<!-- SUBMIT BUTTON -->
 			<div class="form-group">
-				<div class="container-fluid text-left">
-	            	<button type="submit" class="btn btn-default" tabindex="4">Submit</button>
+				<div class="container-fluid text-left btn-submit-first">
+	            	<button type="submit" class="btn btn-success" tabindex="4">Submit</button>
 	            </div>
         	</div>
 
@@ -124,9 +144,9 @@
 			</div>
 
   			<!-- SUBMIT BUTTON -->
-			<div class="form-group">
+			<div class="form-group btn-submit-last">
 				<div class="container-fluid text-left">
-	            	<button type="submit" class="btn btn-default" tabindex="4">Submit</button>
+	            	<button type="submit" class="btn btn-success" tabindex="4">Submit</button>
 	            </div>
         	</div>
 
@@ -150,14 +170,13 @@
 	<script src="lib/jquery-1.12.0.min.js"></script>
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	
 
 	<!-- Removed as it causes issues with select2; <script src="lib/bootstrap.min.js"></script> -->
 
+	<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.1/js/select2.full.min.js"></script> -->
+
+	<!-- select2 -->
 	<script src="lib/select2.full.min.js"></script>
 	<link rel="stylesheet" href="css/select2.min.css">
 	<link rel="stylesheet" href="css/select2-bootstrap-theme.css">

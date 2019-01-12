@@ -1,4 +1,5 @@
-var host = 'https://buongiorno.atlassian.net';
+var host = 'https://jira.docomodigital.com/';
+//var host = 'https://buongiorno.atlassian.net/';
 
 var issueSelector;
 
@@ -28,13 +29,18 @@ function issueSelected(e) {
 	
 	clearForm();
 	switch (issueSelector.val()) {
+		case "Shakura_Task":
+			$('#projectSelector').val("PT").trigger("change");
+			$('#issueTypeSelector').val("Task").trigger("change");
+			$('#epicLink').val("PT-292");
+			break;
 		case "BadDebts_Task":
-			$('#projectSelector').val("EDCB").trigger("change");
+			$('#projectSelector').val("PT").trigger("change");
 			$('#issueTypeSelector').val("Task").trigger("change");
 			$('#epicLink').val("EDCB-25");
 			break;
 		case "BadDebts_Standalone_Task":
-			$('#projectSelector').val("EDCB").trigger("change");
+			$('#projectSelector').val("PT").trigger("change");
 			$('#issueTypeSelector').val("Task").trigger("change");
 			$('#epicLink').val("EDCB-26");
 			break;
@@ -46,16 +52,41 @@ function issueSelected(e) {
 		case "PT-18":
 		case "PT-55":
 		case "PT-63":
+		case "PT-114":
+			$('#epicLink').val(issueSelector.val());
+		case "PT":
 			$('#projectSelector').val("PT").trigger("change");
 			$('#issueTypeSelector').val("Story").trigger("change");
-			$('#epicLink').val(issueSelector.val());
+			break;
+		case "PT_Support_Task":
+			$('#projectSelector').val("PT").trigger("change");
+			$('#issueTypeSelector').val("Task").trigger("change");
+			$('#labels').val('Platform,Support');
+			break;
+		case "PT_Support_Bug":
+			$('#projectSelector').val("PT").trigger("change");
+			$('#issueTypeSelector').val("Bug").trigger("change");
+			$('#labels').val('Platform,Support');
 			break;
 		case "SOP_SanityQA":
 		case "OME":
-			window.location='https://buongiorno.atlassian.net/plugins/servlet/ac/com.atlassian.jira.static.issues/issues-collector-gtd2?user.key=ruben.martinez&user.id=ruben.martinez'
+			window.location='https://http://jira.docomodigital.com/plugins/servlet/ac/com.atlassian.jira.static.issues/issues-collector-gtd2?user.key=ruben.martinez&user.id=ruben.martinez'
+			break;
+		case "OME_Support_connectors_enabler":
+			$('#projectSelector').val("OME").trigger("change");
+			$('#issueTypeSelector').val("Task").trigger("change");
+			$('#labels').val('connectors,support,enabler');
+			break;
+		case "OME_Support":
+			$('#projectSelector').val("OME").trigger("change");
+			$('#issueTypeSelector').val("Task").trigger("change");
+			$('#labels').val('connectors');
 			break;
 		case "Payments_Service_Management":
 			window.location='https://coa.docomodigital.com/display/OPT/Opening+Requests+to+Payments+Service+Management+Team'
+			break;
+		case "Supported_Services_Catalog":
+			window.location='https://coa.docomodigital.com/display/ITP/Supported+services+catalog'
 			break;
 		case "SA_Support":
 			$('#projectSelector').val("SL").trigger("change");
@@ -85,7 +116,7 @@ function issueSelected(e) {
 			$('#labels').val('Support,BPC_Support');
 			break;
 		case "Internal":
-			$('#projectSelector').val("PPE").trigger("change");
+			$('#projectSelector').val("PT").trigger("change");
 			$('#issueTypeSelector').val("Task").trigger("change");
 			$('#assignee').val("ruben.martinez");
 			break;
@@ -116,6 +147,16 @@ function issueSelected(e) {
 			$('#issueTypeSelector').val("Task").trigger("change");
 			$('#labels').val("Platform");
 			break;
+		case "PT_Support_Task":
+			$('#projectSelector').val("PT").trigger("change");
+			$('#issueTypeSelector').val("Task").trigger("change");
+			$('#labels').val("Platform,Support");
+			break;
+		case "PT_Support_Bug":
+			$('#projectSelector').val("PT").trigger("change");
+			$('#issueTypeSelector').val("Bug").trigger("change");
+			$('#labels').val("Platform,Support");
+			break;
 		case "EDCB_Support_Task":
 			$('#projectSelector').val("EDCB").trigger("change");
 			$('#issueTypeSelector').val("Task").trigger("change");
@@ -141,7 +182,7 @@ $(".form-group > .btn").click(function() {
 function setEpicToIssue(issueId, epicId) {
 	dataJSON = {
 		"fields": {
-			"customfield_10007": epicId
+			"customfield_10841": epicId
 		}
 	}
 
@@ -154,9 +195,9 @@ function setEpicToIssue(issueId, epicId) {
 		dataType: 'json',
 		contentType: "application/json",
 		data: data,
-		error: function(response){
+		error: function(response, textStatus, errorThrown){
 			console.log('setEpicToIssue error, response: '+ response);
-			$('#createdResultPlaceholder').css("color", "red").append("Error while setting epic: " + response);
+			$('#createdResultPlaceholder').css("color", "red").append("Error while setting epic [" + textStatus + "] [" + errorThrown + "] - " + response);
 		},
 		success: function (response){
 			console.log("setEpicToIssue response: "+ response);
@@ -200,8 +241,8 @@ $("#issueCollectorForm").submit(function(event){
 		}
 
 	if (epicLink && epicLink.length>0) {
-		var jiraCustomFieldEpicLink = "customfield_10007"; // Taken from: https://buongiorno.atlassian.net/rest/api/2/field, example see issue: https://buongiorno.atlassian.net/rest/api/2/issue/PT-2
-		dataJSON[jiraCustomFieldEpicLink] = epicLink;
+		var EPIC_CUSTOM_FIELD = "customfield_10841"; // Taken from: https://jira.docomodigital.com.net/rest/api/2/field, set also in dataJSON above
+		dataJSON[EPIC_CUSTOM_FIELD] = epicLink;
 	}
 
 	var data =  JSON.stringify(dataJSON);
@@ -226,7 +267,7 @@ $("#issueCollectorForm").submit(function(event){
 			if (epicLink) {
 				setTimeout(function() { setEpicToIssue(response.key, epicLink) }, 2000);
 			}
-			setTimeout(function() { window.close(); }, 60000);
+			//setTimeout(function() { window.close(); }, 60000);
 		}
 	});
 
