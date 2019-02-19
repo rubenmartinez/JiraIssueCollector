@@ -29,20 +29,30 @@ function issueSelected(e) {
 	
 	clearForm();
 	switch (issueSelector.val()) {
+		case "RACC_Sensei":
+			$('#projectSelector').val("RACC").trigger("change");
+			$('#issueTypeSelector').val("Task").trigger("change");
+			$('#epicLink').val("RACC-817");
+			break;
 		case "Shakura_Task":
 			$('#projectSelector').val("PT").trigger("change");
 			$('#issueTypeSelector').val("Task").trigger("change");
 			$('#epicLink').val("PT-292");
 			break;
-		case "BadDebts_Task":
-			$('#projectSelector').val("PT").trigger("change");
-			$('#issueTypeSelector').val("Task").trigger("change");
-			$('#epicLink').val("EDCB-25");
-			break;
-		case "BadDebts_Standalone_Task":
+		case "Sensei_Core_Task":
 			$('#projectSelector').val("PT").trigger("change");
 			$('#issueTypeSelector').val("Task").trigger("change");
 			$('#epicLink').val("EDCB-26");
+			break;
+		case "Sensei_Swisscom_Task":
+			$('#projectSelector').val("PT").trigger("change");
+			$('#issueTypeSelector').val("Task").trigger("change");
+			$('#epicLink').val("PT-970");
+			break;
+		case "Sensei_Tef_Task":
+			$('#projectSelector').val("PT").trigger("change");
+			$('#issueTypeSelector').val("Task").trigger("change");
+			$('#epicLink').val("EDCB-25");
 			break;
 		case "PT-2":
 		case "PT-3":
