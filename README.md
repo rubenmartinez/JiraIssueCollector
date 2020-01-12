@@ -1,3 +1,3 @@
 # jiraissuecollector
 
-Just a small extension to help creating Jira Issues quickly
+Small Chrome extension to help creating Jira Issues quickly in my organization
